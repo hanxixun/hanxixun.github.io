@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://hanxixun.github.io</id>
+    <title>Gridea</title>
+    <updated>2021-07-05T11:40:12.053Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://hanxixun.github.io"/>
+    <link rel="self" href="https://hanxixun.github.io/atom.xml"/>
+    <subtitle>天南第一剑仙</subtitle>
+    <logo>https://hanxixun.github.io/images/avatar.png</logo>
+    <icon>https://hanxixun.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[ 第十三章、WEB服务器和FTP服务器]]></title>
+        <id>https://hanxixun.github.io/第十三章、WEB服务器和FTP服务器/</id>
+        <link href="https://hanxixun.github.io/第十三章、WEB服务器和FTP服务器/">
+        </link>
+        <updated>2021-07-05T07:39:52.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="web服务器">WEB服务器</h2>
+<p>1.WEB服务器也称为网页服务器或HTTP服务器</p>
+<p>2.WEB服务器使用的协议是HTTP或HTTPS</p>
+<p>3.HTTP协议端口号：TCP 80<br>
+HTTPS协议端口号：TCP 443</p>
+<p>4.WEB服务器发布软件：</p>
+<p>生产：</p>
+<blockquote>
+<p>Windwos: IIS(可以发布web网站和FTP站点) Internet Information Service</p>
+<p>Linux：Apache/LAMP/Tomcat/nginx.....</p>
+</blockquote>
+<p>测试：</p>
+<blockquote>
+<p>phpstudy、XAMPP</p>
+</blockquote>
+<p>5.部署WEB服务器：<br>
+1）配置静态IP地址<br>
+2）安装IIS-WEB插件<br>
+3）停用默认站点  默认网站位置：c:\Inetpub\wwwroot<br>
+4）新建网站-地址端口绑定-指定站点路径-设置权限<br>
+5）设置默认文档（设置首页）</p>
+<p>6.一台服务器同时发布多个web站点：<br>
+1）不同的IP，相同的端口</p>
+<figure data-type="image" tabindex="1"><img src="https://gitee.com/hanxixun/blog_picture_bed/raw/master/blog_picture_bed/image-20210503013732406.png" alt="image-20210503013732406" loading="lazy"></figure>
+<p>2）相同的IP，不同的端口   网站管理中，将80修改为其他端口，如8080、8081<br>
+3）相同的IP，相同的端口，不同的域名（主机头）</p>
+<blockquote>
+<p>DNS服务器上新建工作区域，增加域名。然后网站管理上，加上主机头(域名)的对应关系</p>
+</blockquote>
+<p>7.网站类型：<br>
+1）静态网站：一般扩展名为.html或.htm<br>
+无后台数据库<br>
+2）动态网站：一般扩展名为.asp或.php<br>
+有后台数据库，asp或php可以连接前台页面与后台数据库</p>
+<p>动态网站，访问子目录时，需要在属性里，在主目录栏目的配置里，把“启用父路径”勾上，这样的话，它下面的子目录也可以访问了</p>
+<p>8.常见小问题：<br>
+1）用域名可以，用IP不行<br>
+2）所有IIS配置都没错，但是用域名访问不了<br>
+不要忘记指DNS，清空DNS缓存<br>
+3）检查一遍，发现所有配置都没问题！<br>
+但一直弹“用户登录”对话框，要检查站点文件夹是否赋予IUSR来宾用户权限</p>
+<h2 id="ftp服务器">FTP服务器：</h2>
+<p>1.File Transfor Protocol<br>
+文件传输协议</p>
+<p>2.端口号：<br>
+TCP 20和21</p>
+<p>3.FTP工作方式：<br>
+1）主动模式 用21和20两个端口号<br>
+21端口：控制端口   进行请求、账户验证使用21<br>
+20端口：数据端口   进行数据传输，如上传下载数据，此时使用20端口<br>
+2）被动模式<br>
+21端口+随机端口作为数据传输端口<br>
+注意：<br>
+主被动模式，阐述的是数据传输过程<br>
+主被动模式，选择权在客户机上！由服务器决定使用什么模式选择连接<br>
+主被动模式，所谓主或被是站在服务器的角度</p>
+<figure data-type="image" tabindex="2"><img src="https://gitee.com/hanxixun/blog_picture_bed/raw/master/blog_picture_bed/day06%E3%80%81FTP%E4%B9%8B%E4%B8%BB%E8%A2%AB%E5%8A%A8%E6%A8%A1%E5%BC%8F.png" alt="day06、FTP之主被动模式" loading="lazy"></figure>
+<p>4、部署FTP服务器<br>
+1）配置静态IP<br>
+2）安装IIS-ftp软件<br>
+3）使用默认站点或创建新的站点     默认站点位置：c:\Inetpub\ftproot<br>
+注意：用户最终权限为FTP权限与NTFS权限取交集<br>
+建议：FTP权限全部勾选，然后具体的在NTFS里做！<br>
+4）去掉匿名访问对勾</p>
+<p>作业：<br>
+1）2个虚拟机必须还原快照！<br>
+同时发布2个动态网站，并成功分别用域名访问！</p>
+<p>2）使用IIS实现学校FTP服务器的访问效果</p>
+<p>3）选做serv-u（一款好用的ftp管理工具）<br>
+4）选做：观察20端口</p>
+]]></content>
+    </entry>
+</feed>
